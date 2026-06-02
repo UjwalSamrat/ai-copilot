@@ -8,14 +8,18 @@ model = SentenceTransformer(
 
 print("Model loaded successfully!")
 
-text = "JWT authentication validation"
+from sentence_transformers import SentenceTransformer
 
-vector = model.encode(text)
+print("Loading embedding model...")
 
-print("\nEmbedding generated!")
+model = SentenceTransformer(
+    "BAAI/bge-small-en-v1.5"
+)
 
-print("Vector Length:", len(vector))
+print("Model loaded!")
 
-print("First 10 values:")
+def generate_embedding(text):
 
-print(vector[:10])
+    return model.encode(
+        text
+    ).tolist()
